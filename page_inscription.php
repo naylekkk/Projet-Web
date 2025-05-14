@@ -1,6 +1,6 @@
 <?php
-    require 'config.php'
-    include("en-tete.html")
+    require 'config.php';
+    include("en-tete.html");
 ?>
 
 <html>
