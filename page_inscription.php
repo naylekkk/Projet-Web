@@ -1,16 +1,22 @@
+<?php
+    require 'config.php';
+    include("en-tete.html");
+?>
+
 <html>
     <head>
         <title>Page d'inscription</title>
         <style>
             fieldset{
-                border:2px solid blue;
+                border:4px solid blue;
                 width:300px;
                 margin: 0 auto;
+                margin-top:20px;
             }
             .connexion{
                 text-align: center;
             }
-            div{
+            .register{
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 10px;
@@ -26,23 +32,23 @@
     <body>
         <fieldset>
             <legend>Inscription</legend>
-            <div>
+            <div class="register">
                 <label for="login">Login </label>
                 <input  type="text" name="login" placeholder="Login">
             </div>
-            <div>
+            <div class="register">
                 <label for="mdp">Mot de Passe </label>
                 <input type="password" name="mdp" placeholder="Mot de Passe">
             </div>
-            <div>
+            <div class="register">
                 <label for="nom">Nom</label>
                 <input type="text" name="nom" placeholder="Nom">
             </div>
-            <div>
+            <div class="register">
                 <label for="prenom">Prénom </label>
                 <input type="text" name="prenom" placeholder="Prénom">
             </div>
-            <div>
+            <div class="register">
                 <label for="email">E-mail </label>
                 <input type="text" name="email" placeholder="E-mail">
             </div>

@@ -1,16 +1,22 @@
+<?php
+    require 'config.php';
+    include("en-tete.html");
+?>
+
 <html>
     <head>
         <title>Page de connexion</title>
         <style>
             fieldset{
-                border:2px solid red;
+                border:4px solid red;
                 width:300px;
                 margin: 0 auto;
+                margin-top:20px;
             }
             .inscription{
                 text-align: center;
             }
-            div{
+            .log{
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 10px;
@@ -26,11 +32,11 @@
     <body>
         <fieldset>
             <legend>Connexion</legend>
-            <div>
+            <div class="log"> 
                 <label for="login">Login </label>
                 <input  type="text" name="login" placeholder="Login">
             </div>
-            <div>
+            <div class="log">
                 <label for="mdp">Mot de Passe </label>
                 <input type="password" name="mdp" placeholder="Mot de Passe">
             </div>
