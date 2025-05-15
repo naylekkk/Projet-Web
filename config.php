@@ -1,34 +1,25 @@
 <?php
 $host = 'localhost';
-$db   = 'banque_images';
-$user = 'votre_username_sql';
-$pass = 'votre_mdp_sql';
+$db   = 'l2info';
+$user = 'l2info';
+$pass = 'l2info';
+$connexion = mysqli_connect($host, $user, $pass, $db);
 
-try {
-    // Connexion au serveur MySQL (sans base sélectionnée)
-    $pdo = new PDO("mysql:host=$host;charset=utf8", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Créer la base de données si elle n'existe pas
-    $pdo->exec("CREATE DATABASE IF NOT EXISTS $db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci");
-
-    // Sélection de la base
-    $pdo->exec("USE $db");
-
-    // Création de la table users si elle n'existe pas
-    $pdo->exec("
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(50) NOT NULL UNIQUE,
-            prenom VARCHAR(50) NOT NULL,
-            nom VARCHAR(50) NOT NULL,
-            email VARCHAR(100) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ");
-
-} catch (PDOException $e) {
-    die("Erreur de connexion ou de création de base : " . $e->getMessage());
+// Lire le fichier SQL
+$sql = file_get_contents('base-site.sql');
+if ($sql === false) {
+    die('Erreur : impossible de lire le fichier SQL.');
 }
+
+// Exécuter les requêtes (si le fichier contient plusieurs requêtes séparées par ;)
+$queries = explode(';', $sql);
+foreach ($queries as $query) {
+    $query = trim($query);  //trim() permet d'enlever les espaces inutiles
+    if (!empty($query)) { //Si la requête n'est pas vide
+        if (!mysqli_query($connexion, $query)) { //Si la requête n'est pas valide, on envoie une erreur.
+            echo "Erreur : " . mysqli_error($connexion) . "<br>";
+        }
+    }
+}
+
 ?>

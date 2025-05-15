@@ -1,8 +1,8 @@
-CREATE DATABASE banque_images;
+CREATE DATABASE IF NOT EXISTS banque_images;
 
 USE banque_images;
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     prenom VARCHAR(50) NOT NULL,
