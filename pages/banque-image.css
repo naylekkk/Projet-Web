@@ -1,25 +1,33 @@
 body{
     margin:0px;
-    background-color: antiquewhite;
+    background-color: rgb(78, 78, 78);
+    font-family: 'Playfair Display', serif;
+    color:rgb(159, 115, 3);
+    font-weight: bold;
 }
 
 .entete{
-    background-color: lightblue;
-    color:black;
+    background-color: black;
+    color:rgb(159, 115, 3);
     display: flex;
     align-items: center;     /* Centre verticalement */
-    justify-content: center; /* (optionnel) Centre horizontalement */
     height: 100px;           /* Nécessaire pour voir l’effet */
     border: 1px solid black; /* Pour visualiser le div */
+    
+}
+.entete h1 {
+    margin: 0;
+    position: absolute;
+    right: 43%;
 }
 
 
 .fieldset_connexion{
-    border:4px solid red;
+    border:4px solid rgb(159, 115, 3);
     width:300px;
     margin: 0 auto;
     margin-top:20px;
-    background-color:#f5d3c2;
+    background-color:black;
 }
 .inscription{
     text-align: center;
@@ -46,11 +54,11 @@ legend{
     border-radius: 5px;
 }
 .legend_connexion{
-    border: 4px solid red;
+    border: 4px solid rgb(159, 115, 3);
 }
 
 .legend_inscription{
-    border: 4px solid blue;
+    border: 4px solid rgb(159, 115, 3);
 }
 
 .mdp{
@@ -77,12 +85,13 @@ legend{
 #oeil{
     height:100%;
 }
+
 .fieldset_inscription{
-    border:4px solid blue;
+    border:4px solid rgb(159, 115, 3);
     width:300px;
     margin: 0 auto;
     margin-top:20px;
-    background-color: #e5e2f1;
+    background-color:black;
 }
 .connexion{
     text-align: center;
@@ -113,4 +122,12 @@ legend{
 .succes{
     text-align:center;
     color:green;
+}
+.logo {
+    height: 80px;
+    margin-right: 20px;
+}
+
+a{
+    color:rgb(159, 115, 3)
 }
