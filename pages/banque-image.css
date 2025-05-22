@@ -114,6 +114,12 @@ legend{
     border-color:black;
 }
 
+#bouton_submit:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+
 .erreur{
     text-align: center;
     color:red;
@@ -130,4 +136,10 @@ legend{
 
 a{
     color:rgb(159, 115, 3)
+}
+
+.bienvenue {
+    text-align: center;
+    font-style: italic;
+    margin-top: 10px;
 }
