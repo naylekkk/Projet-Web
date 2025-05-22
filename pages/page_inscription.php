@@ -56,7 +56,8 @@
 <html>
     <head>
         <title>Page d'inscription</title>    
-        <link rel="stylesheet" type="text/css" href="banque-image.css">    
+        <link rel="stylesheet" type="text/css" href="banque-image.css">   
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
     <body>
         <?php
