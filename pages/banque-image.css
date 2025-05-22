@@ -1,0 +1,116 @@
+body{
+    margin:0px;
+    background-color: antiquewhite;
+}
+
+.entete{
+    background-color: lightblue;
+    color:black;
+    display: flex;
+    align-items: center;     /* Centre verticalement */
+    justify-content: center; /* (optionnel) Centre horizontalement */
+    height: 100px;           /* Nécessaire pour voir l’effet */
+    border: 1px solid black; /* Pour visualiser le div */
+}
+
+
+.fieldset_connexion{
+    border:4px solid red;
+    width:300px;
+    margin: 0 auto;
+    margin-top:20px;
+    background-color:#f5d3c2;
+}
+.inscription{
+    text-align: center;
+}
+.log{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+input{
+    background-color: floralwhite;
+    border-radius: 5px;
+    border-color:black;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+legend{
+    font-weight:bold;
+    background-color: floralwhite;
+    border-radius: 5px;
+}
+.legend_connexion{
+    border: 4px solid red;
+}
+
+.legend_inscription{
+    border: 4px solid blue;
+}
+
+.mdp{
+    position:relative;
+    display:inline-block;
+}
+.bouton_mdp{
+    position: absolute;
+    right:10;
+    top:0;
+    height:100%;
+    background-color: floralwhite;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color:black;
+}
+
+#password{
+    width:70%;
+}
+
+
+
+#oeil{
+    height:100%;
+}
+.fieldset_inscription{
+    border:4px solid blue;
+    width:300px;
+    margin: 0 auto;
+    margin-top:20px;
+    background-color: #e5e2f1;
+}
+.connexion{
+    text-align: center;
+}
+.register{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.submit{
+    margin-top:40px;
+    text-align: center;
+}
+
+#bouton_submit{
+    background-color: floralwhite;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color:black;
+}
+
+.erreur{
+    text-align: center;
+    color:red;
+}
+
+.succes{
+    text-align:center;
+    color:green;
+}
