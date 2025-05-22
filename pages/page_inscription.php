@@ -63,6 +63,7 @@
         <?php
             include("en-tete.html");
         ?>
+        <p class="bienvenue">Bienvenue sur L'Œil d'Or. Inscrivez-vous pour accéder à vos images.</p>
         <form method = "POST" action = "" autocomplete="off">
             <fieldset class = "fieldset_inscription">
                 <legend class="legend_inscription">Inscription</legend>
