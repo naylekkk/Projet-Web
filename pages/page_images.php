@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['login'])){
+        header("Location: page_connexion.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,8 +21,10 @@
 
 <div class="container-principal">
 
-    <!-- 📌 Barre latérale gauche -->
+    <!-- Barre latérale gauche -->
     <div class="barre-laterale">
+        <?php echo "Bienvenue " . htmlspecialchars($_SESSION['login']) . " !";?>
+        <hr>
         <button class="bouton-deconnexion">Déconnexion</button>
         <nav>
             <a class="item-lateral" href="#">🔍 Recherche</a><br>
@@ -28,3 +39,5 @@
         </ul>
     </div>
 </div>
+</body>
+</html>
