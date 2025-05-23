@@ -17,7 +17,7 @@
 
         //On vérifie si l'email et le login existent déjà ou  pas
         $verif = mysqli_prepare($connexion, "SELECT id FROM users WHERE username = ? OR email = ?");
-        mysqli_stmt_bind_param($verif, "ss", $login, $email);
+        mysqli_stmt_bind_param($verif, "s", $login, $email);
         mysqli_stmt_execute($verif);
         mysqli_stmt_store_result($verif);
 
@@ -33,7 +33,7 @@
                 $succes = mysqli_stmt_execute($rqt);
 
                 if($succes){
-                    header("refresh:3;url=../pages/page_connexion.php");
+                    header("refresh:3;url=page_connexion.php");
                     $m_succes = "Inscription réussie ! Redirection vers la page connexion dans 3 secondes";
                     $m_erreur = "";
                 }

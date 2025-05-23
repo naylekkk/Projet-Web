@@ -1,3 +1,45 @@
+<?php
+    session_start();
+    
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require '../base_de_donnees/config.php';
+
+    $m_erreur = "";
+    $m_succes="";
+
+    if($_SERVER["REQUEST_METHOD"]  == "POST"){
+        $login =  htmlspecialchars(trim($_POST['login'])); //htmlspecialchar permet d'éviter les injections de script malveillants
+        //trim supprime les espaces inutiles
+        $mot_de_passe = htmlspecialchars($_POST['mdp']);
+
+        $rqt = mysqli_prepare($connexion, "SELECT password FROM users WHERE username = ?");
+        mysqli_stmt_bind_param($rqt, "s", $login);
+        mysqli_stmt_execute($rqt);
+        $mdp_hash = $rqt->get_result();
+
+        if($row =  $mdp_hash->fetch_assoc()){
+            if(password_verify($mot_de_passe,$row['password'])){
+                $m_succes = "Connexion en cours...";
+                $m_erreur ="";
+                $_SESSION['login'] = $login;
+                header("refresh:3;url=page_images.php");
+            }
+            else{
+                $m_erreur = "Mot de passe incorrect !";
+                $m_succes = "";
+            }
+        }
+        else{
+            $m_erreur = "Login inexistant, inscrivez-vous." ;
+            $m_succes = "";
+        }
+        mysqli_stmt_close($rqt);
+    }
+?>
+
+<!DOCTYPE html> 
 <html>
     <head>
         <title>Page de connexion</title>
@@ -10,7 +52,7 @@
             include("en-tete.html");
         ?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Connectez-vous pour accéder à vos images.</p>
-        <form method = "POST" action = "../base_de_donnes/connexion.php"  autocomplete="off">
+        <form method = "POST" action = "" autocomplete="off">
             <fieldset class = "fieldset_connexion">
                 <legend class="legend_connexion">Connexion</legend>
                 <div class="log"> 
@@ -26,6 +68,10 @@
                         </button>
                     </div>
                 </div>
+
+                <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
+                <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+
                 <div class = "submit">
                     <button type="submit" id="bouton_submit">Se connecter</button>
                 </div>
