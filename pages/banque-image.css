@@ -158,21 +158,6 @@ a{
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.bouton-deconnexion {
-    width: 100%;
-    padding: 10px;
-    background-color: grey;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-.bouton-deconnexion:hover {
-    background-color: rgb(204, 150, 12);
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
 
 .liste-contacts {
     list-style-type: none;
@@ -195,4 +180,25 @@ a{
 
 .item-lateral:hover {
     background-color: rgb(230, 220, 173);
+}
+
+.bouton-lateral {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    background-color: grey;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.bouton-lateral:hover {
+    background-color: rgb(204, 150, 12);
+    color: white;
+    cursor: pointer;
 }

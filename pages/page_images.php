@@ -5,6 +5,12 @@
         header("Location: page_connexion.php");
         exit;
     }
+    if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+        session_unset();
+        session_destroy();
+        header('Location: page_connexion.php');
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +31,8 @@
     <div class="barre-laterale">
         <?php echo "Bienvenue " . htmlspecialchars($_SESSION['login']) . " !";?>
         <hr>
-        <button class="bouton-deconnexion">Déconnexion</button>
+        <a href="page_images.php" class="bouton-lateral">Accueil</a>
+        <a href="?action=logout" class="bouton-lateral">Déconnexion</a>
         <nav>
             <a class="item-lateral" href="#">🔍 Recherche</a><br>
             <a class="item-lateral" href="#">📤 Dépôt</a>
