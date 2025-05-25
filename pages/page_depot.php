@@ -11,6 +11,13 @@
     $m_erreur = "";
     $m_succes="";
 
+    if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+        session_unset();
+        session_destroy();
+        header('Location: page_connexion.php');
+        exit();
+    }
+
     if($_SERVER["REQUEST_METHOD"]  == "POST"){
         $nom = htmlspecialchars($_POST['nom']);
         $description = htmlspecialchars($_POST['description']);
@@ -73,36 +80,59 @@
         <?php
             include("en-tete.html");
         ?>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Dépôt d'Images</legend>
-                <div class="fieldset_div">
-                    <label>Nom de l'image :</label>
-                    <input type="text" name="nom" required placeholder="Nom">
-                </div>
+    <div class="container-principal">
 
-                <div class="fieldset_div">
-                    <label>Description :</label>
-                    <textarea name="description" placeholder="Description de l'image"></textarea><br>
-                </div>
+    <!-- Barre latérale gauche -->
+    <div class="barre-laterale">
+        <?php echo "Bienvenue " . htmlspecialchars($_SESSION['login']) . " !";?>
+        <hr>
+        <nav>
+            <a href="page_images.php" class="item-lateral">Accueil</a><br>
+            <a href="?action=logout" class="item-lateral">Déconnexion</a><br>
+            <a class="item-lateral" href="#">🔍 Recherche</a><br>
+            <a class="bouton-lateral" href="page_depot.php">📤 Dépôt</a>
+        </nav>
+        <hr>
+        <h2>📞 Contacts</h2>
+        <ul class="liste-contacts">
+            <li>Alice 📸 💬</li>
+            <li>Bob 📸 💬</li>
+            <li>Claire 📸 💬</li>
+        </ul>
+    </div>
+            <div class = "contenu-principal">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Dépôt d'Images</legend>
+                        <div class="fieldset_div">
+                            <label>Nom de l'image :</label>
+                            <input type="text" name="nom" required placeholder="Nom">
+                        </div>
 
-                <div class="fieldset_div">
-                    <label>Mots-clés :</label>
-                    <input type="text" name="mots_cles" placeholder="Séparés par des virgules (ex: ciel,bleu,nuages)"><br>
-                </div>
+                        <div class="fieldset_div">
+                            <label>Description :</label>
+                            <textarea name="description" placeholder="Description de l'image"></textarea><br>
+                        </div>
 
-                <div class="fieldset_div">
-                    <label>Fichier image :</label>
-                    <input type="file" name="image" accept="image/*" required>
-                </div>
-                
-                <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
-                <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+                        <div class="fieldset_div">
+                            <label>Mots-clés :</label>
+                            <input type="text" name="mots_cles" placeholder="Séparés par des virgules (ex: ciel,bleu,nuages)"><br>
+                        </div>
 
-                <div class="submit">
-                    <input type="submit" value="Déposer l'image">
-                </div>    
-        </fieldset>
-        </form>
+                        <div class="fieldset_div">
+                            <label>Fichier image :</label>
+                            <input type="file" name="image" accept="image/*" required>
+                        </div>
+                        
+                        <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
+                        <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+
+                        <div class="submit">
+                            <input type="submit" value="Déposer l'image">
+                        </div>    
+                </fieldset>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

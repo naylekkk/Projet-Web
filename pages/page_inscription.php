@@ -64,49 +64,51 @@
             include("en-tete.html");
         ?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Inscrivez-vous pour accéder à vos images.</p>
-        <form method = "POST" action = "" autocomplete="off">
-            <fieldset class = "fieldset_inscription">
-                <legend>Inscription</legend>
-                <div class="fieldset_div">
-                    <label for="login">Login </label>
-                    <input  type="text" name="login" placeholder="Login">
-                </div>
-                <div class="fieldset_div">
-                    <label for="mdp">Mot de Passe </label>
-                    <div class = "mdp">
-                        <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
-                        <button type="button" onclick="togglePassword()" class = "bouton_mdp">
-                            <img src=../data/icones/oeilferme.png id="oeil">
-                        </button>
+        <div class="contenu-sans-barre-lateral">
+            <form method = "POST" action = "" autocomplete="off">
+                <fieldset class = "fieldset_inscription">
+                    <legend>Inscription</legend>
+                    <div class="fieldset_div">
+                        <label for="login">Login </label>
+                        <input  type="text" name="login" placeholder="Login">
                     </div>
-                </div>
-                <div class="fieldset_div">
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nom" placeholder="Nom">
-                </div>
-                <div class="fieldset_div">
-                    <label for="prenom">Prénom </label>
-                    <input type="text" name="prenom" placeholder="Prénom">
-                </div>
-                <div class="fieldset_div">
-                    <label for="email">E-mail </label>
-                    <input type="text" name="email" placeholder="E-mail">
-                </div>
+                    <div class="fieldset_div">
+                        <label for="mdp">Mot de Passe </label>
+                        <div class = "mdp">
+                            <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
+                            <button type="button" onclick="togglePassword()" class = "bouton_mdp">
+                                <img src=../data/icones/oeilferme.png id="oeil">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="fieldset_div">
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nom" placeholder="Nom">
+                    </div>
+                    <div class="fieldset_div">
+                        <label for="prenom">Prénom </label>
+                        <input type="text" name="prenom" placeholder="Prénom">
+                    </div>
+                    <div class="fieldset_div">
+                        <label for="email">E-mail </label>
+                        <input type="text" name="email" placeholder="E-mail">
+                    </div>
 
-                <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
-                <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
+                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
 
-                <div class = "submit">
-                    <button type="submit" id="bouton_submit">S'inscrire</button>
-                </div>
-            </fieldset>
-        </form>
-        <p class="connexion">
-            Vous avez déjà un compte ? 
-            <?php
-                echo '<a href="page_connexion.php">Connectez-vous.</a>'
-            ?>
-        </p>
+                    <div class = "submit">
+                        <button type="submit" id="bouton_submit">S'inscrire</button>
+                    </div>
+                </fieldset>
+            </form>
+            <p class="connexion">
+                Vous avez déjà un compte ? 
+                <?php
+                    echo '<a href="page_connexion.php">Connectez-vous.</a>'
+                ?>
+            </p>
+        </div>
     
 
         <script>
