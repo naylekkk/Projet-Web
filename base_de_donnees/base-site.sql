@@ -10,3 +10,15 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    descriptif TEXT,
+    mots_cles TEXT,
+    chemin_fichier VARCHAR(255) NOT NULL,
+    date_enregistrement DATETIME DEFAULT CURRENT_TIMESTAMP,
+    auteur_id INT NOT NULL,
+    FOREIGN KEY (auteur_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

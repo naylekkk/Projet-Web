@@ -1,9 +1,8 @@
 <?php
 $host = 'localhost';
-$db   = 'l2info';
 $user = 'l2info';
 $pass = 'l2info';
-$connexion = mysqli_connect($host, $user, $pass, $db);
+$connexion = mysqli_connect($host, $user, $pass);
 $connexion->set_charset("utf8");
 
 // Lire le fichier SQL
