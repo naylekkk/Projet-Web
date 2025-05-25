@@ -1,0 +1,30 @@
+# === FICHIERS/DOSSIERS À NE PAS INCLURE ===
+
+# Dossier contenant les images uploadées par les utilisateurs
+data/uploads/
+
+# Configuration sensible (base de données, clés API...)
+base_de_donnees/config.php
+.env
+
+# Fichiers temporaires ou système
+*.log
+*.tmp
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Cache ou fichiers générés automatiquement
+cache/
+vendor/
+node_modules/
+
+# Dossiers d'IDE (Visual Studio Code, PHPStorm, etc.)
+.vscode/
+.idea/
+
+# Sauvegardes ou fichiers générés par erreur
+*.zip
+*.tar.gz
+*.sql

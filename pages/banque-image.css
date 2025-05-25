@@ -23,7 +23,7 @@ body{
 }
 
 
-.fieldset_connexion{
+fieldset{
     border:4px solid rgb(204, 150, 12);
     width:300px;
     margin: 0 auto;
@@ -33,7 +33,7 @@ body{
 .inscription{
     text-align: center;
 }
-.log{
+.fieldset_div{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -53,12 +53,6 @@ legend{
     font-weight:bold;
     background-color: floralwhite;
     border-radius: 5px;
-}
-.legend_connexion{
-    border: 4px solid rgb(204, 150, 12);
-}
-
-.legend_inscription{
     border: 4px solid rgb(204, 150, 12);
 }
 
@@ -87,20 +81,8 @@ legend{
     height:100%;
 }
 
-.fieldset_inscription{
-    border:4px solid rgb(204, 150, 12);
-    width:300px;
-    margin: 0 auto;
-    margin-top:20px;
-    background-color:black;
-}
 .connexion{
     text-align: center;
-}
-.register{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
 }
 
 .submit{
@@ -180,6 +162,7 @@ a{
 
 .item-lateral:hover {
     background-color: rgb(230, 220, 173);
+
 }
 
 .bouton-lateral {

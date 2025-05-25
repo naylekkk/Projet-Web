@@ -66,12 +66,12 @@
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Inscrivez-vous pour accéder à vos images.</p>
         <form method = "POST" action = "" autocomplete="off">
             <fieldset class = "fieldset_inscription">
-                <legend class="legend_inscription">Inscription</legend>
-                <div class="register">
+                <legend>Inscription</legend>
+                <div class="fieldset_div">
                     <label for="login">Login </label>
                     <input  type="text" name="login" placeholder="Login">
                 </div>
-                <div class="register">
+                <div class="fieldset_div">
                     <label for="mdp">Mot de Passe </label>
                     <div class = "mdp">
                         <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
@@ -80,15 +80,15 @@
                         </button>
                     </div>
                 </div>
-                <div class="register">
+                <div class="fieldset_div">
                     <label for="nom">Nom</label>
                     <input type="text" name="nom" placeholder="Nom">
                 </div>
-                <div class="register">
+                <div class="fieldset_div">
                     <label for="prenom">Prénom </label>
                     <input type="text" name="prenom" placeholder="Prénom">
                 </div>
-                <div class="register">
+                <div class="fieldset_div">
                     <label for="email">E-mail </label>
                     <input type="text" name="email" placeholder="E-mail">
                 </div>
