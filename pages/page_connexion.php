@@ -30,7 +30,7 @@
                 $m_erreur ="";
                 $_SESSION['login'] = $login;
                 $_SESSION['id'] = $id;
-                header("refresh:3;url=page_images.php");
+                header("refresh:2;url=page_images.php");
             }
             else{
                 $m_erreur = "Mot de passe incorrect !";
@@ -58,37 +58,39 @@
             include("en-tete.html");
         ?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Connectez-vous pour accéder à vos images.</p>
-        <form method = "POST" action = "" autocomplete="off">
-            <fieldset class = "fieldset_connexion">
-                <legend>Connexion</legend>
-                <div class="fieldset_div"> 
-                    <label for="login">Login </label>
-                    <input  type="text" name="login" placeholder="Login">
-                </div>
-                <div class="fieldset_div">
-                    <label for="mdp">Mot de Passe </label>
-                    <div class = "mdp">
-                        <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
-                        <button type="button" onclick="togglePassword()" class = "bouton_mdp">
-                            <img src=../data/icones/oeilferme.png id="oeil">
-                        </button>
+        <div class="contenu-sans-barre-lateral">
+            <form method = "POST" action = "" autocomplete="off">
+                <fieldset class = "fieldset_connexion">
+                    <legend>Connexion</legend>
+                    <div class="fieldset_div"> 
+                        <label for="login">Login </label>
+                        <input  type="text" name="login" placeholder="Login">
                     </div>
-                </div>
+                    <div class="fieldset_div">
+                        <label for="mdp">Mot de Passe </label>
+                        <div class = "mdp">
+                            <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
+                            <button type="button" onclick="togglePassword()" class = "bouton_mdp">
+                                <img src=../data/icones/oeilferme.png id="oeil">
+                            </button>
+                        </div>
+                    </div>
 
-                <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
-                <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
+                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
 
-                <div class = "submit">
-                    <button type="submit" id="bouton_submit">Se connecter</button>
-                </div>
-            </fieldset>
-        </form>
-        <p class = "inscription">
-            Vous n'êtes pas inscrits ? 
-            <?php
-                echo '<a href="page_inscription.php">Inscrivez-vous.</a>'
-            ?>
-        </p>
+                    <div class = "submit">
+                        <button type="submit" id="bouton_submit">Se connecter</button>
+                    </div>
+                </fieldset>
+            </form>
+            <p class = "inscription">
+                Vous n'êtes pas inscrits ? 
+                <?php
+                    echo '<a href="page_inscription.php">Inscrivez-vous.</a>'
+                ?>
+            </p>
+        </div>
         <script>
             function togglePassword(){
                 const input  = document.getElementById("password");

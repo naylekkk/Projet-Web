@@ -6,22 +6,105 @@ body{
     font-weight: bold;
 }
 
-.entete{
+.entete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
     background-color: black;
-    color:rgb(204, 150, 12);
+    color: rgb(204, 150, 12);
     display: flex;
-    align-items: center;     
-    height: 100px;        
-    border: 1px solid black; 
-    
-    
+    align-items: center;
+    border: 1px solid black;
+    z-index: 1000; /* au-dessus de la barre latérale */
 }
+
 .entete h1 {
     margin: 0;
     position: absolute;
     right: 43%;
 }
 
+.contenu-principal {
+    margin-top: 100px;      /* espace pour l’entête */
+    margin-left: 220px;     /* espace pour la barre latérale */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.contenu-sans-barre-lateral{
+    margin-top:100px;
+    padding:20px;
+}
+
+.barre-laterale {
+    color:black;
+    position: fixed;
+    top: 100px; /* en dessous de l’entête */
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 100px); /* toute la hauteur sauf l'entête */
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 999; /* juste en dessous de l’entête */
+}
+
+.bienvenue {
+    text-align: center;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+
+
+.liste-contacts {
+    list-style-type: none;
+    padding-left: 0 ;
+}
+
+.item-lateral {
+    display: block;
+    background-color: floralwhite;
+    padding: 12px 0; /* plus de padding horizontal */ 
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-lateral:hover {
+    background-color: rgb(230, 220, 173);
+
+}
+
+.bouton-lateral {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    background-color: grey;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.bouton-lateral:hover {
+    background-color: rgb(204, 150, 12);
+    color: white;
+    cursor: pointer;
+}
 
 fieldset{
     border:4px solid rgb(204, 150, 12);
@@ -121,67 +204,4 @@ a{
     color:rgb(0, 0, 0)
 }
 
-.bienvenue {
-    text-align: center;
-    font-style: italic;
-    margin-top: 10px;
-}
 
-.container-principal {
-    display: flex;
-    min-height: 500px;
-    color : black;
-}
-
-.barre-laterale {
-    width: 220px;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-
-.liste-contacts {
-    list-style-type: none;
-    padding-left: 0 ;
-}
-
-.item-lateral {
-    display: block;
-    background-color: floralwhite;
-    padding: 12px 0; /* plus de padding horizontal */ 
-    text-decoration: none;
-    color: black;
-    border: 2px solid black;
-    transition: background-color 0.3s, color 0.3s;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.item-lateral:hover {
-    background-color: rgb(230, 220, 173);
-
-}
-
-.bouton-lateral {
-    display: block;
-    width: 90%;
-    padding: 10px;
-    background-color: grey;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.bouton-lateral:hover {
-    background-color: rgb(204, 150, 12);
-    color: white;
-    cursor: pointer;
-}
