@@ -19,11 +19,17 @@
         mysqli_stmt_execute($rqt);
         $mdp_hash = $rqt->get_result();
 
+        $rqt = mysqli_prepare($connexion, "SELECT id FROM users WHERE username = ?");
+        mysqli_stmt_bind_param($rqt, "i", $login);
+        mysqli_stmt_execute($rqt);
+        $id = $rqt->get_result();
+
         if($row =  $mdp_hash->fetch_assoc()){
             if(password_verify($mot_de_passe,$row['password'])){
                 $m_succes = "Connexion en cours...";
                 $m_erreur ="";
                 $_SESSION['login'] = $login;
+                $_SESSION['id'] = $id;
                 header("refresh:3;url=page_images.php");
             }
             else{
@@ -54,12 +60,12 @@
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Connectez-vous pour accéder à vos images.</p>
         <form method = "POST" action = "" autocomplete="off">
             <fieldset class = "fieldset_connexion">
-                <legend class="legend_connexion">Connexion</legend>
-                <div class="log"> 
+                <legend>Connexion</legend>
+                <div class="fieldset_div"> 
                     <label for="login">Login </label>
                     <input  type="text" name="login" placeholder="Login">
                 </div>
-                <div class="log">
+                <div class="fieldset_div">
                     <label for="mdp">Mot de Passe </label>
                     <div class = "mdp">
                         <input type="password" id="password" name="mdp" placeholder="Mot de Passe" autocomplete="new-password">
