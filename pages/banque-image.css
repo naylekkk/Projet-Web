@@ -28,7 +28,7 @@ body{
 
 .contenu-principal {
     margin-top: 100px;      /* espace pour l’entête */
-    margin-left: 220px;     /* espace pour la barre latérale */
+    margin-left: 250px;     /* espace pour la barre latérale */
     padding: 20px;
     min-height: 100vh;
 }

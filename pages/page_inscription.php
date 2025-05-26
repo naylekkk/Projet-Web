@@ -17,7 +17,7 @@
 
         //On vérifie si l'email et le login existent déjà ou  pas
         $verif = mysqli_prepare($connexion, "SELECT id FROM users WHERE username = ? OR email = ?");
-        mysqli_stmt_bind_param($verif, "s", $login, $email);
+        mysqli_stmt_bind_param($verif, "ss", $login, $email);
         mysqli_stmt_execute($verif);
         mysqli_stmt_store_result($verif);
 
@@ -55,7 +55,8 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <title>Page d'inscription</title>    
+        <title>Page d'inscription</title> 
+        <link rel="icon" href="../data/logo.png">   
         <link rel="stylesheet" type="text/css" href="banque-image.css">   
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>

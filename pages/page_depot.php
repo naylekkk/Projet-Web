@@ -1,4 +1,5 @@
 <?php
+    header('Content-Type: text/html; charset=utf-8');
     require '../base_de_donnees/config.php';
 
     session_start();
@@ -71,7 +72,7 @@
 
 <html>
     <head>
-        <title>Page de connexion</title>
+        <title>Dépôt - Banque d'Images</title>
         <link rel="icon" href="../data/logo.png">
         <link rel="stylesheet" type="text/css" href="banque-image.css"> 
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
