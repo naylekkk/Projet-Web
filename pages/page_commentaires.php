@@ -38,6 +38,12 @@
     mysqli_stmt_bind_param($rqt, "iiii", $id_contact, $mon_id, $mon_id, $id_contact);
     mysqli_stmt_execute($rqt);
     $result = mysqli_stmt_get_result($rqt);
+    mysqli_stmt_close($rqt);
+    
+    $rqt = mysqli_prepare($connexion,"SELECT * FROM users;");
+    mysqli_stmt_execute($rqt);
+    $contacts = mysqli_stmt_get_result($rqt);
+    mysqli_stmt_close($rqt);
 
 ?>
 
@@ -67,9 +73,12 @@
             <hr>
             <h2>📞 Contacts</h2>
             <ul class="liste-contacts">
-                <li>Alice 📸 💬</li>
-                <li>Bob 📸 💬</li>
-                <li>Claire 📸 💬</li>
+                <?php
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo "<li>".$row['username']."<a href=page_commentaires.php?".$row['id'].">💬</a>📸</li>";
+                    
+                }
+                ?>
             </ul>
         </div>
 

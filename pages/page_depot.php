@@ -27,6 +27,13 @@
         $auteur = $_SESSION['id']; 
         $chemin = "../data/uploads/";
 
+        // Crée le dossier s'il n'existe pas
+        if (!file_exists($chemin)) {
+            if (!mkdir($chemin, 0755, true)) { //Accorde les permissions pour pouvoir déposer des images dans le répertoire
+                $m_erreur = "Impossible de créer le dossier '$chemin'. Vérifie les permissions.";
+            }
+        }
+
         if($fichier['error'] == 0){
             $tmp_chemin = $fichier['tmp_name'];
             $nom_du_fichier = basename($fichier['name']); //basename enlève le chemin du  nom du fichier
