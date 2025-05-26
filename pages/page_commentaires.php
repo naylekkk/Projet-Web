@@ -21,19 +21,24 @@
 
     $mon_id = $_SESSION['id'];
     $id_contact  = $_GET['id'];
-
-    $rqt = mysqli_prepare($connexion, "SELECT c.*, i.auteur_id
+    $rqt = mysqli_prepare($connexion, "
+        SELECT c.*, 
+            u_auteur.username AS auteur_nom,
+            u_dest.username AS destinataire_nom
         FROM commentaires c
-        JOIN images i ON i.id = c.image_id
-        WHERE
+        JOIN users u_auteur ON c.auteur_id = u_auteur.id
+        JOIN users u_dest ON c.destinataire_id = u_dest.id
+        WHERE (
             (c.auteur_id = ? AND c.destinataire_id = ?)
-        OR (c.auteur_id = ? AND c.destinataire_id = ?)
+            OR
+            (c.auteur_id = ? AND c.destinataire_id = ?)
+        )
         ORDER BY c.date_commentaire ASC
     ");
-    mysqli_stmt_bind_param($rqt, "iiii", $id_contact,$mon_id,$mon_id,$id_contact);
+    mysqli_stmt_bind_param($rqt, "iiii", $id_contact, $mon_id, $mon_id, $id_contact);
     mysqli_stmt_execute($rqt);
-
     $result = mysqli_stmt_get_result($rqt);
+
 ?>
 
 
@@ -69,11 +74,15 @@
         </div>
 
         <div class="contenu-principal">
-            <?php
+            <?php            
                 while ($row = mysqli_fetch_assoc($result)){
-                    echo "<p><strong>Auteur : {$row['auteur_id']}</strong><br>";
-                    echo "Commentaire : " . htmlspecialchars($row['commentaire'], ENT_QUOTES, 'UTF-8') . "<br>";
-                    echo "Date : {$row['date_commentaire']}</p>";
+                    echo "<div class=conteneur-commentaires>";
+                        echo "<strong>". $row['auteur_nom'] . " à " . $row['destinataire_nom'] . "</strong><br>";
+                    echo"<div class='commentaires'>";
+                        echo "Commentaire : <br>" . htmlspecialchars($row['commentaire'], ENT_QUOTES, 'UTF-8') . "<br>";
+                    echo "</div>";
+                    echo "Date du commentaire : ".$row['date_commentaire']."</p>";
+                    echo "</div>";
                 }
             ?> 
         </div>

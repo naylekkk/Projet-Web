@@ -204,4 +204,17 @@ a{
     color:rgb(0, 0, 0)
 }
 
+.conteneur-commentaires{
+    padding:10px;
+    color:black;
+    border:4px solid black;
+    background-color: floralwhite;
+}
 
+.commentaires{
+    padding:9px;
+    border:4px solid rgb(204, 150, 12);
+    background-color: white;
+    margin-right:20px;
+    margin-left:20px;
+}

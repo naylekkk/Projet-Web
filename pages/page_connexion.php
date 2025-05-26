@@ -14,33 +14,24 @@
         //trim supprime les espaces inutiles
         $mot_de_passe = htmlspecialchars($_POST['mdp']);
 
-        $rqt = mysqli_prepare($connexion, "SELECT password FROM users WHERE username = ?");
+        $rqt = mysqli_prepare($connexion, "SELECT id, password FROM users WHERE username = ?");
         mysqli_stmt_bind_param($rqt, "s", $login);
         mysqli_stmt_execute($rqt);
-        $mdp_hash = $rqt->get_result();
+        $result = $rqt->get_result();
 
-        $rqt = mysqli_prepare($connexion, "SELECT id FROM users WHERE username = ?");
-        mysqli_stmt_bind_param($rqt, "i", $login);
-        mysqli_stmt_execute($rqt);
-        $id = $rqt->get_result();
-
-        if($row =  $mdp_hash->fetch_assoc()){
-            if(password_verify($mot_de_passe,$row['password'])){
-                $m_succes = "Connexion en cours...";
-                $m_erreur ="";
+        if($row = $result->fetch_assoc()){
+            if(password_verify($mot_de_passe, $row['password'])){
                 $_SESSION['login'] = $login;
-                $_SESSION['id'] = $id;
+                $_SESSION['id'] = $row['id'];  
+                $m_succes = "Connexion en cours...";
                 header("refresh:2;url=page_images.php");
-            }
-            else{
+            } else {
                 $m_erreur = "Mot de passe incorrect !";
-                $m_succes = "";
             }
+        } else {
+            $m_erreur = "Login inexistant, inscrivez-vous.";
         }
-        else{
-            $m_erreur = "Login inexistant, inscrivez-vous." ;
-            $m_succes = "";
-        }
+
         mysqli_stmt_close($rqt);
     }
 ?>
