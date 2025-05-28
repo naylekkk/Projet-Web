@@ -39,7 +39,7 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <title>Page de connexion</title>
+        <title>Connexion - Banque d'Images</title>
         <link rel="icon" href="../data/logo.png">
         <link rel="stylesheet" type="text/css" href="banque-image.css"> 
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
     <body>
         <?php
             require '../base_de_donnees/config.php';
-            include("en-tete.html");
+            include("../include_php/en-tete.php");
         ?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Connectez-vous pour accéder à vos images.</p>
         <div class="contenu-sans-barre-lateral">

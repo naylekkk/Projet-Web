@@ -4,21 +4,10 @@
 
     session_start();
 
-    if(!isset($_SESSION['login'])){
-        header("Location: page_connexion.php");
-        exit;
-    }
-
     $m_erreur = "";
     $m_succes="";
 
-    if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-        session_unset();
-        session_destroy();
-        header('Location: page_connexion.php');
-        exit();
-    }
-
+    
     if($_SERVER["REQUEST_METHOD"]  == "POST"){
         $nom = htmlspecialchars($_POST['nom']);
         $description = htmlspecialchars($_POST['description']);
@@ -26,6 +15,13 @@
         $fichier = $_FILES['image'];
         $auteur = $_SESSION['id']; 
         $chemin = "../data/uploads/";
+
+        // Crée le dossier s'il n'existe pas
+        if (!file_exists($chemin)) {
+            if (!mkdir($chemin, 0755, true)) { //Accorde les permissions pour pouvoir déposer des images dans le répertoire
+                $m_erreur = "Impossible de créer le dossier '$chemin'. Vérifie les permissions.";
+            }
+        }
 
         if($fichier['error'] == 0){
             $tmp_chemin = $fichier['tmp_name'];
@@ -78,9 +74,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php
-            include("en-tete.html");
-        ?>
+        <?php include("../include_php/en-tete.php"); ?>
     <div class="container-principal">
 
     <!-- Barre latérale gauche -->
@@ -89,16 +83,12 @@
         <hr>
         <nav>
             <a href="page_images.php" class="item-lateral">Accueil</a><br>
-            <a href="?action=logout" class="item-lateral">Déconnexion</a><br>
+            <?php include("../include_php/deconnexion.php");?>
             <a class="item-lateral" href="#">🔍 Recherche</a><br>
             <a class="bouton-lateral" href="page_depot.php">📤 Dépôt</a>
         </nav>
         <hr>
-        <h2>📞 Contacts</h2>
-        <ul class="liste-contacts">
-            <li>Alice 📸 💬</li>
-            <li>Bob 📸 💬</li>
-            <li>Claire 📸 💬</li>
+        <?php include("../include_php/contacts.php")?>
         </ul>
     </div>
             <div class = "contenu-principal">
