@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     //récupère l'id de l'utilisateur qui à posté le commentaire
     $auteur_id = $_SESSION['id'];
 // quand le formulaire est soumis , on enregistre le commentaire 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     $commentaire = htmlspecialchars($_POST["commentaire"]);
     // récupère l'id de l'utilisateur qui a posté le commentaire
     $auteur_id = $_SESSION['id'];
@@ -51,16 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     $rqt = mysqli_prepare($connexion, "INSERT INTO commentaires (image_id, auteur_id, commentaire, destinataire_id) VALUES (?, ?, ?, ?)");
     mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $dest_id);
     if (mysqli_stmt_execute($rqt)) {
-        $m_succes = "Commentaire ajouté.";
+    $m_succes = "Commentaire ajouté.";
     } else {
-        $m_erreur = "Erreur lors de l'ajout du commentaire.";
-    }
-    mysqli_stmt_close($rqt);
-}
-    if (mysqli_stmt_execute($rqt)){
-        $m_succes = "Commentaire ajouté.";
-    } else {
-        $m_erreur = "Erreur lors de l'ajout du commentaire.";
+        $m_erreur = "Erreur lors de l'ajout du commentaire : " . mysqli_error($connexion);
     }
     mysqli_stmt_close($rqt);
 }
