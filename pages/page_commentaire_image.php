@@ -1,39 +1,53 @@
 <?php
+//les trois lignes sont là pour afficher les erreurs php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+//html codé en utf8
 header('Content-Type: text/html; charset=utf-8');
+
+//connexion à la base de données
 require '../base_de_donnees/config.php';
 session_start();
 
+//utilisateur  connecté ? sinon page connexion 
 if (!isset($_SESSION['id'])) {
     header('Location: page_connexion.php');
     exit;
 }
 
+//on récupère l'id de l'image
 $id_image = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $m_erreur = "";
 $m_succes = "";
 
-// Enregistrement du commentaire si formulaire soumis
+// quand le formulaire est soumis , on enregistre le commentaire 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     $commentaire = htmlspecialchars($_POST["commentaire"]);
+    //récupère l'id de l'utilisateur qui à posté le commentaire
     $auteur_id = $_SESSION['id'];
+// quand le formulaire est soumis , on enregistre le commentaire 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
+    $commentaire = htmlspecialchars($_POST["commentaire"]);
+    // récupère l'id de l'utilisateur qui a posté le commentaire
+    $auteur_id = $_SESSION['id'];
+
+    // On récupère l'id de l'auteur de l'image (destinataire du commentaire)
     $rqt = mysqli_prepare($connexion, "
         SELECT u.id 
         FROM users AS u, images AS i 
         WHERE u.id = i.auteur_id 
         AND i.id = ?
     ");
-    mysqli_stmt_bind_param($rqt, "i", $id_image); // "i" pour un entier
+    mysqli_stmt_bind_param($rqt, "i", $id_image);
     mysqli_stmt_execute($rqt);
     $res = mysqli_stmt_get_result($rqt);
     $ligne = mysqli_fetch_assoc($res);
-    $dest_id = $ligne['id']; // récupère l'id du destinataire (auteur de l'image)
+    $dest_id = $ligne['id']; // auteur de l'image
     mysqli_stmt_close($rqt);
 
-
+    // Insertion du commentaire dans la base
     $rqt = mysqli_prepare($connexion, "INSERT INTO commentaires (image_id, auteur_id, commentaire, destinataire_id) VALUES (?, ?, ?, ?)");
     mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $dest_id);
     if (mysqli_stmt_execute($rqt)) {
@@ -44,7 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     mysqli_stmt_close($rqt);
 }
 
-// Récupération de l'image
+        $m_succes = "Commentaire ajouté.";
+    } else {
+        $m_erreur = "Erreur lors de l'ajout du commentaire.";
+    }
+    mysqli_stmt_close($rqt);
+}
+
+// on récupère toutes les informations de l'image grâce à son ID
 $rqt = mysqli_prepare($connexion, "SELECT * FROM images WHERE id = ?");
 mysqli_stmt_bind_param($rqt, "i", $id_image);
 mysqli_stmt_execute($rqt);
@@ -52,12 +73,13 @@ $result_image = mysqli_stmt_get_result($rqt);
 $image = mysqli_fetch_assoc($result_image);
 mysqli_stmt_close($rqt);
 
+//quand l'image n'est pas trouvé , on affiche  un message d'erreur 
 if (!$image) {
     echo "Image non trouvée.";
     exit;
 }
 
-// Récupération des commentaires liés à l'image
+//on récupère tout les commentaires lié à l'image
 $rqt = mysqli_prepare($connexion, "SELECT c.commentaire, c.date_commentaire, u.username FROM commentaires c JOIN users u ON c.auteur_id = u.id WHERE c.image_id = ? ORDER BY c.date_commentaire ASC");
 mysqli_stmt_bind_param($rqt, "i", $id_image);
 mysqli_stmt_execute($rqt);
@@ -79,7 +101,7 @@ $result_commentaires = mysqli_stmt_get_result($rqt);
     <nav>
         <a href="page_images.php" class="item-lateral">Accueil</a><br>
         <?php include("../include_php/deconnexion.php");?>
-        <a class="item-lateral" href="#">🔍 Recherche</a><br>
+        <a class="item-lateral" href="page_recherche.php">🔍 Recherche</a><br>
         <a class="item-lateral" href="page_depot.php">📤 Dépôt</a>
     </nav>
     <hr>
