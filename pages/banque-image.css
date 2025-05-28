@@ -4,7 +4,6 @@ body{
     font-family: 'Playfair Display', serif;
     color:rgb(204, 150, 12);
     font-weight: bold;
-    overflow:hidden;
 }
 
 .entete {
@@ -18,7 +17,7 @@ body{
     display: flex;
     align-items: center;
     border: 1px solid black;
-    z-index: 2; /* au-dessus de la barre latérale */
+    z-index: 2;
 }
 
 .entete h1 {
@@ -28,11 +27,14 @@ body{
 }
 
 .contenu-principal {
-    margin-top: 100px;
-    margin-left: 250px;
+    position: absolute;
+    top: 100px;
+    left: 220px;
+    right: 0;
+    bottom: 0;
     padding: 20px;
-    height: calc(100vh - 100px); /* tout sauf l'entête */
-    overflow-y: auto; /* scroll seulement ici */
+    overflow-y: auto; /* scroll vertical */
+    background-color: rgb(78, 78, 78);
 }
 
 
@@ -42,16 +44,17 @@ body{
 }
 
 .barre-laterale {
-    color: black;
     position: fixed;
-    top: 100px; /* sous l'entête */
+    top: 100px; /* sous l’en-tête */
     left: 0;
     width: 220px;
-    height: calc(100vh - 100px); /* toute la hauteur, sans l’entête */
+    height: calc(100vh - 100px); /* hauteur restante */
     background-color: #ffffff;
     padding: 20px;
-    overflow-y: auto; /* scroll vertical interne */
+    overflow-y: auto; /* scroll vertical */
     z-index: 1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    color: black;
 }
 
 .bienvenue {
