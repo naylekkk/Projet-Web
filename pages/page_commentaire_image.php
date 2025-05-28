@@ -27,11 +27,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     $commentaire = htmlspecialchars($_POST["commentaire"]);
     //récupère l'id de l'utilisateur qui à posté le commentaire
     $auteur_id = $_SESSION['id'];
-    //la requete d'insertion est préparé
+// quand le formulaire est soumis , on enregistre le commentaire 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
+    $commentaire = htmlspecialchars($_POST["commentaire"]);
+    // récupère l'id de l'utilisateur qui a posté le commentaire
+    $auteur_id = $_SESSION['id'];
+
+    // On récupère l'id de l'auteur de l'image (destinataire du commentaire)
+    $rqt = mysqli_prepare($connexion, "
+        SELECT u.id 
+        FROM users AS u, images AS i 
+        WHERE u.id = i.auteur_id 
+        AND i.id = ?
+    ");
+    mysqli_stmt_bind_param($rqt, "i", $id_image);
+    mysqli_stmt_execute($rqt);
+    $res = mysqli_stmt_get_result($rqt);
+    $ligne = mysqli_fetch_assoc($res);
+    $dest_id = $ligne['id']; // auteur de l'image
+    mysqli_stmt_close($rqt);
+
+    // Insertion du commentaire dans la base
     $rqt = mysqli_prepare($connexion, "INSERT INTO commentaires (image_id, auteur_id, commentaire, destinataire_id) VALUES (?, ?, ?, ?)");
-    //id de l'auteur = destinataire pas défaut 
-    mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $auteur_id); 
-    if (mysqli_stmt_execute($rqt)){
+    mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $dest_id);
+    if (mysqli_stmt_execute($rqt)) {
+        $m_succes = "Commentaire ajouté.";
+    } else {
+        $m_erreur = "Erreur lors de l'ajout du commentaire.";
+    }
+    mysqli_stmt_close($rqt);
+}
+
         $m_succes = "Commentaire ajouté.";
     } else {
         $m_erreur = "Erreur lors de l'ajout du commentaire.";
