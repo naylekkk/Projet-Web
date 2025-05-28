@@ -219,3 +219,75 @@ a{
 .a-bouton{
     text-decoration: none;
 }
+
+.carte-image {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.miniature {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+/* Image en grand */
+.miniature-grande {
+    max-width: 100%;
+    max-height: 500px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Bloc de commentaires */
+.commentaire {
+    background-color: #f0f0f0;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border-left: 5px solid #0066cc;
+}
+
+.commentaire strong {
+    color: #333;
+}
+
+.commentaire p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+/* Formulaire de commentaire */
+form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+form input[type="submit"] {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0050a0;
+}
