@@ -4,6 +4,7 @@ body{
     font-family: 'Playfair Display', serif;
     color:rgb(204, 150, 12);
     font-weight: bold;
+    overflow:hidden;
 }
 
 .entete {
@@ -17,7 +18,7 @@ body{
     display: flex;
     align-items: center;
     border: 1px solid black;
-    z-index: 1000; /* au-dessus de la barre latérale */
+    z-index: 2; /* au-dessus de la barre latérale */
 }
 
 .entete h1 {
@@ -27,11 +28,13 @@ body{
 }
 
 .contenu-principal {
-    margin-top: 100px;      /* espace pour l’entête */
-    margin-left: 250px;     /* espace pour la barre latérale */
+    margin-top: 100px;
+    margin-left: 250px;
     padding: 20px;
-    min-height: 100vh;
+    height: calc(100vh - 100px); /* tout sauf l'entête */
+    overflow-y: auto; /* scroll seulement ici */
 }
+
 
 .contenu-sans-barre-lateral{
     margin-top:100px;
@@ -39,17 +42,16 @@ body{
 }
 
 .barre-laterale {
-    color:black;
+    color: black;
     position: fixed;
-    top: 100px; /* en dessous de l’entête */
+    top: 100px; /* sous l'entête */
     left: 0;
     width: 220px;
-    height: calc(100vh - 100px); /* toute la hauteur sauf l'entête */
+    height: calc(100vh - 100px); /* toute la hauteur, sans l’entête */
     background-color: #ffffff;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    z-index: 999; /* juste en dessous de l’entête */
+    overflow-y: auto; /* scroll vertical interne */
+    z-index: 1;
 }
 
 .bienvenue {
@@ -58,40 +60,16 @@ body{
     margin-top: 10px;
 }
 
-
-
-
 .liste-contacts {
     list-style-type: none;
     padding-left: 0 ;
 }
 
-.item-lateral {
-    display: block;
-    background-color: floralwhite;
-    padding: 12px 0; /* plus de padding horizontal */ 
-    text-decoration: none;
-    color: black;
-    border: 2px solid black;
-    transition: background-color 0.3s, color 0.3s;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.item-lateral:hover {
-    background-color: rgb(230, 220, 173);
-
-}
-
-.bouton-lateral {
+.item-lateral, .bouton-lateral{
     display: block;
     width: 90%;
     padding: 10px;
-    background-color: grey;
     border: 2px solid black;
-    border-radius: 5px;
     margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
@@ -100,10 +78,23 @@ body{
     transition: background-color 0.3s, color 0.3s;
 }
 
+.item-lateral {
+    background-color: floralwhite;
+}
+
+.item-lateral:hover {
+    background-color: rgb(230, 220, 173);
+
+}
+
+.bouton-lateral{
+    background-color: grey;
+    border-radius: 5px;
+}
+
 .bouton-lateral:hover {
     background-color: rgb(204, 150, 12);
     color: white;
-    cursor: pointer;
 }
 
 fieldset{
@@ -116,6 +107,7 @@ fieldset{
 .inscription{
     text-align: center;
 }
+
 .fieldset_div{
     display: flex;
     flex-direction: column;
@@ -157,8 +149,6 @@ legend{
 #password{
     width:70%;
 }
-
-
 
 #oeil{
     height:100%;
@@ -217,4 +207,12 @@ a{
     background-color: white;
     margin-right:20px;
     margin-left:20px;
+}
+
+.bouton-comm-images{
+    margin-right:0;
+}
+
+.a-bouton{
+    text-decoration: none;
 }

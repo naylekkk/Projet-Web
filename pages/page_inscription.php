@@ -55,15 +55,13 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <title>Page d'inscription</title> 
+        <title>Inscription - Banque d'Images</title> 
         <link rel="icon" href="../data/logo.png">   
         <link rel="stylesheet" type="text/css" href="banque-image.css">   
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php
-            include("en-tete.html");
-        ?>
+        <?php include("../include_php/en-tete.php"); ?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Inscrivez-vous pour accéder à vos images.</p>
         <div class="contenu-sans-barre-lateral">
             <form method = "POST" action = "" autocomplete="off">
