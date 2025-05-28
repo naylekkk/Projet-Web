@@ -1,12 +1,17 @@
 <?php
+    //debug
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    
+    //Connexion à la base de donnée
     require '../base_de_donnees/config.php';
 
+    //Message de succès et erreur
     $m_erreur = "";
     $m_succes="";
 
+    //Si le serveur reçoit une requête POST du formulaire
     if($_SERVER["REQUEST_METHOD"]  == "POST"){
         $login =  htmlspecialchars(trim($_POST['login'])); //htmlspecialchar permet d'éviter les injections de script malveillants
         //triim supprime les espaces inutiles
@@ -21,21 +26,21 @@
         mysqli_stmt_execute($verif);
         mysqli_stmt_store_result($verif);
 
-        if (mysqli_stmt_num_rows($verif) > 0) {
+        if (mysqli_stmt_num_rows($verif) > 0) { //S'il y a au moins un login ou un email qui correspond, erreur
             $m_erreur= "Ce login ou cet email est déjà utilisé, réessayez.";
             $m_succes = "";
         }
 
-        else{
+        else{ //Sinon
+            //On insère dans la base de données les données d'inscription rentrées par le formulaire 
             $rqt = mysqli_prepare($connexion,"INSERT INTO users (username, prenom, nom, email, password) VALUES (?, ?, ?, ?, ?)");
-            if($rqt){
-                mysqli_stmt_bind_param($rqt,"sssss",$login,$prenom,$nom,$email,$password);
+            if($rqt){ //Si la requête a marchée :
+                mysqli_stmt_bind_param($rqt,"sssss",$login,$prenom,$nom,$email,$password); //On affecte login,prenom,nom,email et password
                 $succes = mysqli_stmt_execute($rqt);
 
                 if($succes){
-                    header("refresh:3;url=page_connexion.php");
-                    $m_succes = "Inscription réussie ! Redirection vers la page connexion dans 3 secondes";
-                    $m_erreur = "";
+                    header("refresh:2;url=page_connexion.php"); //Si la requête est exécutée, redirection vers la page de connexion
+                    $m_succes = "Inscription réussie ! Redirection vers la page connexion dans 2 secondes";
                 }
                 else{
                     echo "Erreur lors de l'inscription" . mysqli_stmt_error($rqt);
@@ -61,7 +66,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php include("../include_php/en-tete.php"); ?>
+        <?php include("../include_php/en-tete.php"); //On inclut l'en-tete?>
         <p class="bienvenue">Bienvenue sur L'Œil d'Or. Inscrivez-vous pour accéder à vos images.</p>
         <div class="contenu-sans-barre-lateral">
             <form method = "POST" action = "" autocomplete="off">
@@ -93,8 +98,8 @@
                         <input type="text" name="email" placeholder="E-mail">
                     </div>
 
-                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
-                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; //message de succès?>
+                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; //message d'erreur?>
 
                     <div class = "submit">
                         <button type="submit" id="bouton_submit">S'inscrire</button>
@@ -111,7 +116,7 @@
     
 
         <script>
-            function togglePassword(){
+            function togglePassword(){ //Permet d'afficher/masquer le mot de passe quand on veut se connecter
                 const input  = document.getElementById("password");
                 const oeil = document.getElementById("oeil");
                 if(input.type == "password"){

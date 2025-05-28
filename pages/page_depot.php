@@ -36,15 +36,15 @@
                 //uniqid permet de crée un identifiant unique à l'image
                 $chemin_final = $chemin . $nom_unique;
 
-                if (!is_writable($chemin)) {
+                if (!is_writable($chemin)) {  //Si on ne peut pas écrire, il faut accorder les permissions au dossier
                     $m_erreur = "Le dossier cible n'est pas accessible en écriture : $chemin";
                 }
                 else{
                 if(move_uploaded_file($tmp_chemin,$chemin_final)){ //On déplace le fichier temporaire dans le répertoire upload
                     //On enregistre dans la base de données :
                     $rqt = mysqli_prepare($connexion,"INSERT INTO images (nom, descriptif, mots_cles, chemin_fichier, auteur_id) VALUES (?, ?, ?, ?, ?)");
-                    mysqli_stmt_bind_param($rqt,"ssssi", $nom,$description,$mots_cles,$chemin_final,$auteur);
-                    if(mysqli_stmt_execute($rqt)){
+                    mysqli_stmt_bind_param($rqt,"ssssi", $nom,$description,$mots_cles,$chemin_final,$auteur); //On affecte les paramètres
+                    if(mysqli_stmt_execute($rqt)){ //Si bien exécuté, l'image a bien été déposée
                         $m_succes = "Image déposée avec succès !";
                     } else {
                         $m_erreur = "Erreur lors de l'enregistrement en base de données.";
@@ -57,7 +57,7 @@
                 }}
             }
             else{
-                $m_erreur = "Extension non autorisée !";
+                $m_erreur = "Extension non autorisée !"; //Mauvaise extension
             }
         }
         else{
@@ -74,7 +74,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php include("../include_php/en-tete.php"); ?>
+        <?php include("../include_php/en-tete.php"); //on inclut l'en-tête?>
     <div class="container-principal">
 
     <!-- Barre latérale gauche -->
@@ -83,12 +83,12 @@
         <hr>
         <nav>
             <a href="page_images.php" class="item-lateral">Accueil</a><br>
-            <?php include("../include_php/deconnexion.php");?>
+            <?php include("../include_php/deconnexion.php");//On inclut le bouton déconnexion et son fonctionnement?>
             <a class="item-lateral" href="#">🔍 Recherche</a><br>
             <a class="bouton-lateral" href="page_depot.php">📤 Dépôt</a>
         </nav>
         <hr>
-        <?php include("../include_php/contacts.php")?>
+        <?php include("../include_php/contacts.php") //On inclut la liste de contacts?>
         </ul>
     </div>
             <div class = "contenu-principal">
