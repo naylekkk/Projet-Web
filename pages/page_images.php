@@ -2,11 +2,6 @@
     header('Content-Type: text/html; charset=utf-8');
     require '../base_de_donnees/config.php';
     session_start();
-
-    if(!isset($_SESSION['login'])){
-        header("Location: page_connexion.php");
-        exit;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +22,12 @@
             <hr>
             <nav>
                 <a href="page_images.php" class="bouton-lateral">Accueil</a><br>
-                <?php include("../include_php/deconnexion.php");?>
+            <?php include("../include_php/deconnexion.php");//On inclut le bouton déconnexion et son fonctionnement?>
                 <a class="item-lateral" href="#">🔍 Recherche</a><br>
                 <a class="item-lateral" href="page_depot.php">📤 Dépôt</a>
             </nav>
             <hr>
-            <?php include("../include_php/contacts.php")?>
+        <?php include("../include_php/contacts.php") //On inclut la liste de contacts?>
         </div>
 
         <div class="contenu-principal">

@@ -76,8 +76,8 @@
                         </div>
                     </div>
 
-                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>"; ?>
-                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; ?>
+                    <?php if (!empty($m_erreur)) echo "<p class='erreur'>$m_erreur</p>";  //message d'erreur en rouge?>
+                    <?php if (!empty($m_succes)) echo "<p class='succes'>$m_succes</p>"; //message de succès en vert?>
 
                     <div class = "submit">
                         <button type="submit" id="bouton_submit">Se connecter</button>
@@ -92,7 +92,7 @@
             </p>
         </div>
         <script>
-            function togglePassword(){
+            function togglePassword(){ //Permet d'afficher/masquer le mot de passe quand on veut se connecter
                 const input  = document.getElementById("password");
                 const oeil = document.getElementById("oeil");
                 if(input.type == "password"){
