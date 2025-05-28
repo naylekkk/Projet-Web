@@ -84,7 +84,7 @@
         <nav>
             <a href="page_images.php" class="item-lateral">Accueil</a><br>
             <?php include("../include_php/deconnexion.php");//On inclut le bouton déconnexion et son fonctionnement?>
-            <a class="item-lateral" href="#">🔍 Recherche</a><br>
+            <a class="item-lateral" href="page_recherche.php">🔍 Recherche</a><br>
             <a class="bouton-lateral" href="page_depot.php">📤 Dépôt</a>
         </nav>
         <hr>

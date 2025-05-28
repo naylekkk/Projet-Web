@@ -10,7 +10,11 @@
         //Chaque ligne du résultat est affecté à row
         while ($row = mysqli_fetch_assoc($contacts)){
             //On affiche les contacts selon leur nom d'utilisateur, et les icones cliquables
-            echo "<li>".$row['username']."<div class=bouton-comm-images><a class='a-bouton' href=page_commentaires.php?id=".$row['id'].">💬</a><a class='a-bouton' href=page_images.php?id=".$row['id'].">📸</a></div></li><hr>";
+            echo "<li>".$row['username']."<div class=bouton-comm-images>
+            <a class='a-bouton' href=page_commentaires.php?id=".$row['id'].">💬</a>
+            <a class='a-bouton' href='page_images_contact.php?id=".$row['id']."'>📸</a>
+            </div>
+            </li>
+            <hr>";
         }
     ?>
-</ul>
