@@ -20,9 +20,22 @@ $m_succes = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     $commentaire = htmlspecialchars($_POST["commentaire"]);
     $auteur_id = $_SESSION['id'];
+    $rqt = mysqli_prepare($connexion, "
+        SELECT u.id 
+        FROM users AS u, images AS i 
+        WHERE u.id = i.auteur_id 
+        AND i.id = ?
+    ");
+    mysqli_stmt_bind_param($rqt, "i", $id_image); // "i" pour un entier
+    mysqli_stmt_execute($rqt);
+    $res = mysqli_stmt_get_result($rqt);
+    $ligne = mysqli_fetch_assoc($res);
+    $dest_id = $ligne['id']; // récupère l'id du destinataire (auteur de l'image)
+    mysqli_stmt_close($rqt);
+
 
     $rqt = mysqli_prepare($connexion, "INSERT INTO commentaires (image_id, auteur_id, commentaire, destinataire_id) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $auteur_id); // destinataire = auteur temporairement
+    mysqli_stmt_bind_param($rqt, "iisi", $id_image, $auteur_id, $commentaire, $dest_id);
     if (mysqli_stmt_execute($rqt)) {
         $m_succes = "Commentaire ajouté.";
     } else {
