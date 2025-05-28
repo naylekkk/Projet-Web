@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["commentaire"])) {
     }
     mysqli_stmt_close($rqt);
 }
-
+    if (mysqli_stmt_execute($rqt)){
         $m_succes = "Commentaire ajouté.";
     } else {
         $m_erreur = "Erreur lors de l'ajout du commentaire.";
